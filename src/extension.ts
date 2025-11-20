@@ -24,5 +24,25 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  context.subscriptions.push(showFileHistoryCommand);
+  // Register a command to navigate previous commit
+  const navigatePreviousCommand = vscode.commands.registerCommand(
+    "git-history.navigatePrevious",
+    async () => {
+      await gitHistoryManager.navigatePrevious();
+    }
+  );
+
+  // Register a command to navigate next commit
+  const navigateNextCommand = vscode.commands.registerCommand(
+    "git-history.navigateNext",
+    async () => {
+      await gitHistoryManager.navigateNext();
+    }
+  );
+
+  context.subscriptions.push(
+    showFileHistoryCommand,
+    navigatePreviousCommand,
+    navigateNextCommand
+  );
 }

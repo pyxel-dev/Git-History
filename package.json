@@ -39,6 +39,16 @@
         "command": "git-history.showFileHistory",
         "title": "Git History : Display Git file history",
         "icon": "$(history)"
+      },
+      {
+        "command": "git-history.navigatePrevious",
+        "title": "Git History: Previous commit",
+        "icon": "$(chevron-left)"
+      },
+      {
+        "command": "git-history.navigateNext",
+        "title": "Git History: Next commit",
+        "icon": "$(chevron-right)"
       }
     ],
     "menus": {
@@ -47,6 +57,16 @@
           "command": "git-history.showFileHistory",
           "when": "resourceScheme == file",
           "group": "navigation@1"
+        },
+        {
+          "command": "git-history.navigatePrevious",
+          "when": "resourceScheme == git-history",
+          "group": "navigation@2"
+        },
+        {
+          "command": "git-history.navigateNext",
+          "when": "resourceScheme == git-history",
+          "group": "navigation@3"
         }
       ]
     }

@@ -55,6 +55,20 @@ export class GitHistoryManager {
     }
   }
 
+  public async navigatePrevious(): Promise<void> {
+    if (this.currentCommitIndex < this.commits.length - 1) {
+      this.currentCommitIndex++;
+      await this.showCommitDiff();
+    }
+  }
+
+  public async navigateNext(): Promise<void> {
+    if (this.currentCommitIndex > 0) {
+      this.currentCommitIndex--;
+      await this.showCommitDiff();
+    }
+  }
+
   private async getFileCommits(
     filePath: string,
     workspaceRoot: string
