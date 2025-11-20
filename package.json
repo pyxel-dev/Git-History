@@ -33,6 +33,24 @@
     "onStartupFinished"
   ],
   "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-history.showFileHistory",
+        "title": "Git History : Display Git file history",
+        "icon": "$(history)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "git-history.showFileHistory",
+          "when": "resourceScheme == file",
+          "group": "navigation@1"
+        }
+      ]
+    }
+  },
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
