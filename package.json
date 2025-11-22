@@ -1,7 +1,7 @@
 {
   "name": "git-history",
   "displayName": "Git History",
-  "description": "Browse the Git history of your files",
+  "description": "Browse the Git history of your files.",
   "version": "0.0.1",
   "license": "MIT",
   "publisher": "Pyxel",
@@ -33,6 +33,7 @@
     "onStartupFinished"
   ],
   "main": "./out/extension.js",
+  "icon": "images/icon.png",
   "contributes": {
     "commands": [
       {
