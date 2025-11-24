@@ -1,13 +1,13 @@
 {
-  "name": "git-history",
-  "displayName": "Git History",
+  "name": "git-history-explorer",
+  "displayName": "Git History Explorer",
   "description": "Browse the Git history of your files.",
   "version": "0.0.1",
   "license": "MIT",
-  "publisher": "Pyxel",
+  "publisher": "KevinPy",
   "author": {
-    "name": "Pyxel",
-    "url": "https://pyxel.dev"
+    "name": "Kevin Py",
+    "url": "https://kevinpy.com"
   },
   "repository": {
     "type": "git",
@@ -78,15 +78,25 @@
     "watch": "tsc -watch -p ./",
     "lint": "eslint src",
     "build:extension": "vsce package",
-    "build": "pnpm run compile && pnpm run build:extension"
+    "build": "pnpm run compile && pnpm run build:extension",
+    "commit": "cz",
+    "version": "conventional-changelog -i CHANGELOG.md -s -r 0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "@types/vscode": "^1.106.1",
+    "commitizen": "^4.3.1",
+    "conventional-changelog-cli": "^5.0.0",
     "eslint": "^9.39.1",
+    "git-cz": "^4.9.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.3",
     "vsce": "^2.15.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
   }
 }

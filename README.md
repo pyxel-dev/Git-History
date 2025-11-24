@@ -4,4 +4,4 @@ This extension for Visual Studio Code allows you to view and navigate the Git hi
 
 ## Demo
 
-![Git History Demo](https://github.com/KevinPy/git-history-2/blob/main/images/demo.gif)
+![Git History Demo](https://github.com/pyxel-dev/git-history/blob/main/images/demo.gif)
