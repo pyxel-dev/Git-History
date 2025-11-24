@@ -2,7 +2,7 @@
   "name": "git-history-explorer",
   "displayName": "Git History Explorer",
   "description": "Browse the Git history of your files.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "publisher": "KevinPy",
   "author": {
