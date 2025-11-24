@@ -3,6 +3,13 @@ import { execSync } from "child_process";
 import * as path from "path";
 import { CommitInfo } from "./model";
 
+enum MessageType {
+  NO_FILE_SELECTED = "No file selected or open in the editor.",
+  NOT_LOCAL_FILE = "The selected file is not a local file.",
+  FILE_NOT_IN_WORKSPACE = "The selected file is not in a workspace.",
+  FAILED_TO_GET_HISTORY = "Failed to get file history:",
+}
+
 export class GitHistoryManager {
   private currentCommitIndex: number = -1;
   private commits: CommitInfo[] = [];
@@ -13,14 +20,14 @@ export class GitHistoryManager {
     const editor = vscode.window.activeTextEditor;
 
     if (!filePath && !editor) {
-      vscode.window.showErrorMessage("No file selected or open in the editor.");
+      vscode.window.showErrorMessage(MessageType.NO_FILE_SELECTED);
       return;
     }
 
     const uri = filePath || editor!.document.uri;
 
     if (uri.scheme !== "file") {
-      vscode.window.showErrorMessage("The selected file is not a local file.");
+      vscode.window.showErrorMessage(MessageType.NOT_LOCAL_FILE);
       return;
     }
 
@@ -28,9 +35,7 @@ export class GitHistoryManager {
     this.workspaceRoot = vscode.workspace.getWorkspaceFolder(uri)?.uri.fsPath;
 
     if (!this.workspaceRoot) {
-      vscode.window.showErrorMessage(
-        "The selected file is not in a workspace."
-      );
+      vscode.window.showErrorMessage(MessageType.FILE_NOT_IN_WORKSPACE);
       return;
     }
 
@@ -51,7 +56,9 @@ export class GitHistoryManager {
       this.currentCommitIndex = 0;
       await this.showCommitDiff();
     } catch (error) {
-      vscode.window.showErrorMessage(`Failed to get file history: ${error}`);
+      vscode.window.showErrorMessage(
+        `${MessageType.FAILED_TO_GET_HISTORY} ${error}`
+      );
     }
   }
 
@@ -102,7 +109,9 @@ export class GitHistoryManager {
           return { hash, author, date, message };
         });
     } catch (error) {
-      vscode.window.showErrorMessage(`Failed to get file commits : ${error}`);
+      vscode.window.showErrorMessage(
+        `${MessageType.FAILED_TO_GET_HISTORY} ${error}`
+      );
       return [];
     }
   }
