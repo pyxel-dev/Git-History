@@ -50,9 +50,35 @@
         "command": "git-history.navigateNext",
         "title": "Git History: Next commit",
         "icon": "$(chevron-right)"
+      },
+      {
+        "command": "git-history.showCommitDiff",
+        "title": "Git History: Show commit diff"
+      },
+      {
+        "command": "git-history.refreshSourceControlHistory",
+        "title": "Git History: Refresh file history",
+        "icon": "$(refresh)"
       }
     ],
+    "views": {
+      "scm": [
+        {
+          "id": "git-history.sourceControlFileHistory",
+          "name": "Git History",
+          "when": "scmProvider == git",
+          "icon": "$(history)"
+        }
+      ]
+    },
     "menus": {
+      "view/title": [
+        {
+          "command": "git-history.refreshSourceControlHistory",
+          "when": "view == git-history.sourceControlFileHistory",
+          "group": "navigation"
+        }
+      ],
       "editor/title": [
         {
           "command": "git-history.showFileHistory",
