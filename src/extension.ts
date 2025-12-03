@@ -1,12 +1,14 @@
 import * as vscode from "vscode";
 import { GitHistoryProvider } from "./provider";
 import { GitHistoryManager } from "./git-history-manager";
+import { GitBlameDecorator } from "./git-blame-decorator";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log("Git History extension Activated");
 
   const gitHistoryManager = new GitHistoryManager();
   const gitHistoryProvider = new GitHistoryProvider();
+  const gitBlameDecorator = new GitBlameDecorator();
 
   // Register the Git history content provider
   context.subscriptions.push(
@@ -43,6 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     showFileHistoryCommand,
     navigatePreviousCommand,
-    navigateNextCommand
+    navigateNextCommand,
+    gitBlameDecorator
   );
 }

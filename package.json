@@ -80,7 +80,7 @@
     "build:extension": "vsce package",
     "build": "pnpm run compile && pnpm run build:extension",
     "commit": "cz",
-    "version": "conventional-changelog -i CHANGELOG.md -s -r 0"
+    "version": "conventional-changelog -i CHANGELOG.md -s -r 1"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
