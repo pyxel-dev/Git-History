@@ -1,3 +1,9 @@
+## 1.1.0 (2025-12-03)
+
+* feat(extension): add blame and dialog for show more ([1d10a9c](https://github.com/pyxel-dev/git-history/commit/1d10a9c))
+
+
+
 ## 1.0.0 (2025-11-24)
 
 * chore(*): add commit and version controls ([9fddac1](https://github.com/pyxel-dev/git-history/commit/9fddac1))
