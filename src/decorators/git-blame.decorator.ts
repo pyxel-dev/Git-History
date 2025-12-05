@@ -1,18 +1,7 @@
 import * as vscode from "vscode";
 import { execSync } from "child_process";
 import * as path from "path";
-
-interface BlameInfo {
-  hash: string;
-  fullHash: string;
-  author: string;
-  authorEmail: string;
-  date: string;
-  dateISO: string;
-  message: string;
-  committer: string;
-  committerEmail: string;
-}
+import { BlameInfo } from "../models/blame-info.model";
 
 export class GitBlameDecorator {
   private decorationType: vscode.TextEditorDecorationType;

@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { execSync } from "child_process";
 import * as path from "path";
-import { CommitInfo } from "./model";
+import { CommitInfo } from "../models/commit-info.model";
 
 enum MessageType {
   NO_FILE_SELECTED = "No file selected or open in the editor.",

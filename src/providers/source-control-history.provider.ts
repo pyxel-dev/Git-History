@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { execSync } from "child_process";
 import * as path from "path";
-import { CommitInfo } from "./model";
+import { CommitInfo } from "../models/commit-info.model";
 
 export class SourceControlHistoryProvider
   implements vscode.TreeDataProvider<CommitTreeItem>
