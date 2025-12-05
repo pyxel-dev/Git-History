@@ -96,6 +96,26 @@
           "group": "navigation@3"
         }
       ]
+    },
+    "configuration": {
+      "title": "Git History Explorer",
+      "properties": {
+        "gitHistory.hoverMode": {
+          "type": "string",
+          "default": "decoration",
+          "enum": [
+            "always",
+            "decoration",
+            "never"
+          ],
+          "enumDescriptions": [
+            "Show commit details when hovering anywhere on the line",
+            "Show commit details only when hovering over the blame decoration at the end of the line",
+            "Never show commit details on hover"
+          ],
+          "description": "Controls when to display commit information on hover."
+        }
+      }
     }
   },
   "scripts": {

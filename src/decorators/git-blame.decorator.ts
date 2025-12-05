@@ -58,7 +58,27 @@ export class GitBlameDecorator {
       this.updateDecoration(vscode.window.activeTextEditor);
     }
 
-    // Register hover provider
+    // Register hover provider based on configuration
+    this.registerHoverProvider();
+
+    // Listen for configuration changes
+    this.disposables.push(
+      vscode.workspace.onDidChangeConfiguration((e) => {
+        if (e.affectsConfiguration("gitHistory.hoverMode")) {
+          this.registerHoverProvider();
+        }
+      })
+    );
+  }
+
+  private registerHoverProvider(): void {
+    // Dispose existing hover provider if any
+    if (this.hoverProvider) {
+      this.hoverProvider.dispose();
+      this.hoverProvider = null;
+    }
+
+    // Always register hover provider - the logic inside will determine behavior
     this.hoverProvider = vscode.languages.registerHoverProvider(
       { scheme: "file" },
       {
@@ -271,6 +291,27 @@ export class GitBlameDecorator {
       if (!blameInfo) {
         return null;
       }
+
+      // Check configuration setting
+      const config = vscode.workspace.getConfiguration("gitHistory");
+      const hoverMode = config.get<string>("hoverMode", "decoration");
+
+      // Handle different hover modes
+      if (hoverMode === "never") {
+        // Never show hover details
+        return null;
+      } else if (hoverMode === "decoration") {
+        // Only show hover when hovering over the decoration area
+        // Get the line text to determine the actual code length
+        const lineText = document.lineAt(lineNumber).text;
+        const lineLength = lineText.length;
+
+        // Only show hover if the cursor is after the actual code (in the decoration zone)
+        if (position.character < lineLength) {
+          return null;
+        }
+      }
+      // If hoverMode === "always", continue to show hover details
 
       // Create a rich markdown hover with commit details
       const markdown = new vscode.MarkdownString();
