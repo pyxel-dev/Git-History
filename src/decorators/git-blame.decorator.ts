@@ -67,6 +67,12 @@ export class GitBlameDecorator {
         if (e.affectsConfiguration("gitHistory.hoverMode")) {
           this.registerHoverProvider();
         }
+        if (e.affectsConfiguration("gitHistory.showBlameDecoration")) {
+          // Refresh decoration for active editor
+          if (vscode.window.activeTextEditor) {
+            this.updateDecoration(vscode.window.activeTextEditor);
+          }
+        }
       })
     );
   }
@@ -92,6 +98,19 @@ export class GitBlameDecorator {
 
   private async updateDecoration(editor: vscode.TextEditor): Promise<void> {
     if (!editor || editor.document.uri.scheme !== "file") {
+      return;
+    }
+
+    // Check if blame decoration is enabled
+    const config = vscode.workspace.getConfiguration("gitHistory");
+    const showBlameDecoration = config.get<boolean>(
+      "showBlameDecoration",
+      true
+    );
+
+    if (!showBlameDecoration) {
+      // Clear any existing decorations
+      editor.setDecorations(this.decorationType, []);
       return;
     }
 

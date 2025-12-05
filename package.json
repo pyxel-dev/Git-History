@@ -114,6 +114,11 @@
             "Never show commit details on hover"
           ],
           "description": "Controls when to display commit information on hover."
+        },
+        "gitHistory.showBlameDecoration": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show git blame information (author, date, message) at the end of the current line."
         }
       }
     }
